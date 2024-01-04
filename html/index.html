@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+    <title>FuzzyARAS</title>
+    <link rel="icon" type="image/x-icon" href="/assets/fuzzy_8982943.png">
+
+</head>
+
+<body>
+    <header>
+        <div id="header-content">
+            <h3 id="title">Fuzzy ARAS</h3>
+            <div id="vl"></div>
+            <h3>by Zavadskas, E. and Turskis, Z.</h3>
+        </div>
+    </header>
+    <img id="launch-image" src="/assets/mprpheus.jpg" alt="Launch Image">
+    <div id="wrapper">
+        <!-- User input form -->
+        <form id="inputForm">
+            <div id="form-group">
+                <label for="alternatives">Number of Alternatives (3 - 10):</label>
+                <div class="input-group">
+                    <button type="button" id="removeFieldsBtn_alternatives"
+                        onclick="removeFields('alternatives')">Remove</button>
+                    <button type="button" id="decrease-btn_alternatives"
+                        onclick="changeNumber('alternatives', 'decrease')">-</button>
+                    <input type="number" id="alternatives" required min="3" value="4" max="10" disabled>
+                    <button type="button" id="increase-btn_alternatives"
+                        onclick="changeNumber('alternatives', 'increase')">+</button>
+                    <button type="button" id="addFieldsBtn_alternatives"
+                        onclick="addFields('alternatives')">Add</button>
+                    <div id="alternatives-forms"></div>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Number of Criteria Section -->
+            <div id="form-group">
+                <label for="criteria">Number of Criteria (3 - 10):</label>
+                <div class="input-group">
+                    <button type="button" id="removeFieldsBtn_criteria"
+                        onclick="removeFields('criteria')">Remove</button>
+                    <button type="button" id="decrease-btn_criteria"
+                        onclick="changeNumber('criteria', 'decrease')">-</button>
+                    <input type="number" id="criteria" required min="3" value="5" max="10" disabled>
+                    <button type="button" id="increase-btn_criteria"
+                        onclick="changeNumber('criteria', 'increase')">+</button>
+                    <button type="button" id="addFieldsBtn_criteria" onclick="addFields('criteria')">Add</button>
+                    <div id="criteria-forms"></div>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Number of Experts Section -->
+            <div id="form-group">
+                <label for="experts">Number of Experts (1 - 5):</label>
+                <div class="input-group">
+                    <button type="button" id="removeFieldsBtn_experts" onclick="removeFields('experts')">Remove</button>
+                    <button type="button" id="decrease-btn_experts"
+                        onclick="changeNumber('experts', 'decrease')">-</button>
+                    <input type="number" id="experts" required min="1" value="4" max="5" disabled>
+                    <button type="button" id="increase-btn_experts"
+                        onclick="changeNumber('experts', 'increase')">+</button>
+                    <button type="button" id="addFieldsBtn_experts" onclick="addFields('experts')">Add</button>
+                    <div id="experts-forms"></div>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Linguistic Terms for Alternatives Section -->
+            <div id="form-group">
+                <label for="lt-for-alt">Linguistic Terms for Alternatives (3 - 7):</label>
+                <div class="input-group">
+                    <button type="button" id="removeFieldsBtn_lt-for-alt"
+                        onclick="removeFields('lt-for-alt')">Remove</button>
+                    <button type="button" id="decrease-btn_lt-for-alt"
+                        onclick="changeNumber('lt-for-alt', 'decrease')">-</button>
+                    <input type="number" id="lt-for-alt" required min="3" value="7" max="7" disabled>
+                    <button type="button" id="increase-btn_lt-for-alt"
+                        onclick="changeNumber('lt-for-alt', 'increase')">+</button>
+                    <button type="button" id="addFieldsBtn_lt-for-alt" onclick="addFields('lt-for-alt')">Add</button>
+                    <div id="lt-for-alt-forms"></div>
+                    <div id="lt-for-alt-num-forms"></div>
+                    <canvas id="chart-container1"></canvas>
+                    <canvas id="chart-container2"></canvas>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Linguistic Terms for Criteria Section -->
+            <div id="form-group">
+                <label for="lt-for-crt">Linguistic Terms for Criteria (3 - 7):</label>
+                <div class="input-group">
+                    <button type="button" id="removeFieldsBtn_lt-for-crt"
+                        onclick="removeFields('lt-for-crt')">Remove</button>
+                    <button type="button" id="decrease-btn_lt-for-crt"
+                        onclick="changeNumber('lt-for-crt', 'decrease')">-</button>
+                    <input type="number" id="lt-for-crt" required min="3" value="7" max="7" disabled>
+                    <button type="button" id="increase-btn_lt-for-crt"
+                        onclick="changeNumber('lt-for-crt', 'increase')">+</button>
+                    <button type="button" id="addFieldsBtn_lt-for-crt" onclick="addFields('lt-for-crt')">Add</button>
+                    <div id="lt-for-crt-forms"></div>
+                    <div id="lt-for-crt-num-forms"></div>
+                    <canvas id="chart-container3"></canvas>
+                    <canvas id="chart-container4"></canvas>
+                    <hr>
+                </div>
+            </div>
+            <button type="button" id="clear-forms-btn" onclick="clearForms()">Clear forms</button>
+            <button type="button" id="fill-forms-btn" onclick="fillForms()">Fill forms</button>
+            <button type="button" id="submit-input-data-btn" onclick="saveInputData()">Submit</button>
+            <br>
+            <button type="button" id="create-expert-criteria-evaluation-btn" onclick="createNfillTables()">Tables
+                with Evaluated Crieria</button>
+            <div id="expertCriteriaTable"></div>
+            <h3>Triangular Numbers by Criteria</h3>
+            <div id="boundaryTable"></div>
+            <h3>Fuzzy Numbers by Criteria For All Experts</h3>
+            <div id="fuzzyCrtTable"></div>
+        </form>
+
+        <button type="button" id="create-expert-evaluations-btn">Tables
+            with Experts Evaluations</button>
+
+        <div id="expertevaluationsTable"></div>
+        <h3>Aggregated Scores on Alternatives</h3>
+        <div id="aggregatedMatrixTableContainer"></div>
+        <h3>Triangular Numbers by Alternatives</h3>
+        <div id="aggregatedBoundaryTable"></div>
+        <h3>Fuzzy Numbers by Criteria for Each Alternative</h3>
+        <div id="fuzzyAltTable"></div>
+        <h3>Optimal Criteria Values</h3>
+        <div id="optimalCrtTable"></div>
+        <h3>Normalized Criteria Values</h3>
+        <div id="normOptimalCrtTable"></div>
+        <h3>Normalized Values of Alternatives</h3>
+        <div id="normFuzzyAltTable"></div>
+        <h3>Normalized Weighted Criteria Values</h3>
+        <div id="multipTableContainer"></div>
+        <h3>Normalized Weighted Values of Alternatives</h3>
+        <div id="multipAltTableContainer"></div>
+        <h3>The Overall Performance Ratings of Optimal Alternative</h3>
+        <div id="sumTableContainerForCrt"></div>
+        <h3>The Overall Performance Ratings for Alternatives</h3>
+        <div id="sumTableContainerForAlt"></div>
+
+    </div>
+    <div id="footer-wrapper">
+        <footer id="footer">
+            <p>© Fuzzy ARAS 2023 | Developer: <a href="https://github.com/VladyslavMiliev" target="_blank"><ion-icon
+                        name="logo-github"></ion-icon></a></p>
+        </footer>
+    </div>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/javascript/changeNumbers.js"></script>
+    <script src="/javascript/fieldsOperations.js"></script>
+    <script src="/javascript/saveInputData.js"></script>
+    <script src="/javascript/dataSets.js"></script>
+    <script src="/javascript/fillForms.js"></script>
+    <script src="/javascript/image.js"></script>
+    <script src="/javascript/expertCriteria.js"></script>
+    <script src="/javascript/clearForms.js"></script>
+    <script src="/javascript/charts.js"></script>
+    <script src="/javascript/expertEvaluations.js"></script>
+
+</body>
+
+</html>
