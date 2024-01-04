@@ -16,21 +16,31 @@ To run FuzzyARAS, simply open the `index.html` file in your web browser. The app
 
 Users can specify the number of alternatives (3 - 10). Additional forms can be added or removed dynamically.
 
+![image](https://github.com/VladyslavMiliev/fuzzy-aras-method/assets/84059723/8e34aa7d-9897-432d-b344-bf90dc85d866)
+
 ### Number of Criteria
 
 Users can specify the number of criteria (3 - 10). Additional forms can be added or removed dynamically.
+
+![image](https://github.com/VladyslavMiliev/fuzzy-aras-method/assets/84059723/bb731dad-39f1-436d-afb9-e884611640b3)
 
 ### Number of Experts
 
 Users can specify the number of experts (1 - 5). Additional forms can be added or removed dynamically.
 
+![image](https://github.com/VladyslavMiliev/fuzzy-aras-method/assets/84059723/1ba72a4e-4eb4-45af-993c-3176ec830d2b)
+
 ### Linguistic Terms for Alternatives
 
 Users can define linguistic terms for alternatives (3 - 7). Charts visualize the linguistic term distribution.
 
+![image](https://github.com/VladyslavMiliev/fuzzy-aras-method/assets/84059723/5713f60d-acc5-4e0f-86a3-424742b81064)
+
 ### Linguistic Terms for Criteria
 
 Users can define linguistic terms for criteria (3 - 7). Charts visualize the linguistic term distribution.
+
+![image](https://github.com/VladyslavMiliev/fuzzy-aras-method/assets/84059723/0999e77b-ce1c-4da2-88f5-4a64393d7054)
 
 ## Functionalities
 
